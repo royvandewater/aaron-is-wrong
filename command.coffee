@@ -1,23 +1,18 @@
-accounting = require 'accounting'
-Roulette   = require './src/roulette'
+{formatMoney} = require 'accounting'
+_     = require 'lodash'
+Aaron = require './src/aaron'
 
-class Aaron
-  constructor: ->
-    @roulette = new Roulette()
-    @moneys  = 1
-    @winnings = 1
+class Command
+  constructor:  ->
+    @f = formatMoney
+    @aaron = new Aaron()
+    @turn = 0
 
-  play: =>
-    if @winnings > 0
-      newBet = @winnings
-    else
-      newBet = Math.abs @winnings * 2
+  run: =>
+    @turn += 1
+    @aaron.play()
+    console.log "#{@turn}: #{@f(@aaron.moneys)}"
 
-    winnings = @roulette.bet @moneys, on: 'black'
-    moneys += winnings
+    _.delay @run, 500
 
-
-aaron = new Aaron()
-while true
-  aaron.play()
-  console.log 'moneys: ', accounting.formatMoney(aaron.moneys)
+(new Command()).run()
