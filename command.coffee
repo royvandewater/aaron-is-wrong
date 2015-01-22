@@ -1,18 +1,22 @@
-{formatMoney} = require 'accounting'
-_     = require 'lodash'
-Aaron = require './src/aaron'
+async     = require 'async'
+_         = require 'lodash'
+LimitGame = require './src/limit-game'
 
 class Command
-  constructor:  ->
-    @f = formatMoney
-    @aaron = new Aaron()
-    @turn = 0
+  constructor:  (@numGames=100, @limit=1000) ->
 
   run: =>
-    @turn += 1
-    @aaron.play()
-    console.log "#{@turn}: #{@f(@aaron.moneys)}"
+    games = _.times @numGames, => @playLimitGame
+    async.series games, (error, results) =>
+      wins   = 0
+      losses = 0
 
-    _.delay @run, 500
+      _.each results, (result) =>
+        if result.win then wins += 1 else losses += 1
 
-(new Command()).run()
+      console.log "wins: #{wins}, losses: #{losses}"
+
+  playLimitGame: (done) =>
+    new LimitGame(@limit).play done
+
+(new Command(process.argv[2], process.argv[3])).run()
