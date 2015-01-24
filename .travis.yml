@@ -2,8 +2,3 @@ language: node_js
 node_js:
 - '0.10'
 sudo: false
-addons:
-  code_climate:
-    repo_token: 9557dc5f18548c6abd927eaab9b062e6c5d1579f1e6c8141f6117e25e854b0ec
-after_script:
-  - cat lcov.info | codeclimate
