@@ -10,10 +10,10 @@ class LimitGame
   play: (callback=->) =>
     @turn += 1
     @aaron.play()
-    # console.log "#{@turn}: #{f(@aaron.moneys)}"
+    # console.log "#{@turn}: #{f(@aaron.money)}"
 
-    if Math.abs(@aaron.moneys) > @limit
-      won = @aaron.moneys > 0
+    if Math.abs(@aaron.money) > @limit
+      won = @aaron.money > 0
       return callback null, win: won
 
     _.delay @play, 0, callback
