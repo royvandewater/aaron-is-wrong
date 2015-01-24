@@ -1,21 +1,14 @@
-f     = require('accounting').formatMoney
 _     = require 'lodash'
 Aaron = require './aaron'
 
 class LimitGame
-  constructor: (@limit=1000) ->
+  constructor: (@limit=1024) ->
     @aaron = new Aaron
-    @turn = 0
 
-  play: (callback=->) =>
-    @turn += 1
-    @aaron.play()
-    # console.log "#{@turn}: #{f(@aaron.money)}"
+  play: =>
+    while Math.abs(@aaron.money) < @limit
+      @aaron.play()
 
-    if Math.abs(@aaron.money) > @limit
-      won = @aaron.money > 0
-      return callback null, win: won
-
-    _.delay @play, 0, callback
+    @aaron.money
 
 module.exports = LimitGame
