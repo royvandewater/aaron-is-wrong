@@ -6,7 +6,7 @@ LimitGame = require './src/limit-game'
 BATCH_SIZE = 10000
 
 class Command
-  constructor:  (@numGames=100, @limit=1024) ->
+  constructor:  (@numGames, @limit) ->
     @winnings = -1 * @numGames
 
   run: =>
@@ -15,6 +15,6 @@ class Command
 
     console.log 'total winnings: ', f(@winnings)
 
-numGames = parseInt process.argv[2]
-limit = parseInt process.argv[3]
+numGames = parseInt process.argv[2] ? 100
+limit    = parseInt process.argv[3] ? 1024
 (new Command(numGames, limit)).run()
