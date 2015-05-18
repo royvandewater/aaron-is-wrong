@@ -6,6 +6,8 @@ class Roulette
     @sample = dependencies.sample ? _.sample
 
   bet: (amount=0, kwargs={}) =>
+    throw new Error('Negative bets are invalid') if amount < 0
+    throw new Error('Bet cannot be 0') if amount == 0
     color = kwargs.on
     if color == @sample @pockets
       amount
