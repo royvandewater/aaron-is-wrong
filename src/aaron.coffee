@@ -1,8 +1,8 @@
-Roulette = require './roulette'
+SimpleRoulette = require 'simple-roulette'
 
 class Aaron
   constructor: (dependencies={}) ->
-    @roulette = dependencies.roulette ? new Roulette
+    @roulette = dependencies.roulette ? new SimpleRoulette
     @money = 1
     @winnings = 1
 

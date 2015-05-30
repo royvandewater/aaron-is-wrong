@@ -47,17 +47,9 @@ describe 'Aaron', ->
 
     describe 'when it lost last time', ->
       beforeEach ->
-        @sut.money = 0
+        @sut.money = -1
         @sut.winnings = -1
 
       it 'should try to regain its losses', ->
         @sut.play()
         expect(@roulette.bet).to.have.been.calledWith 2, on: 'black'
-
-
-
-
-
-
-
-
