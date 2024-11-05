@@ -2,11 +2,11 @@ _     = require 'lodash'
 Aaron = require './aaron'
 
 class LimitGame
-  constructor: (@limit=1024) ->
+  constructor: (@lowerLimit=-256, @upperLimit=2) ->
     @aaron = new Aaron
 
   play: =>
-    while Math.abs(@aaron.money) < @limit
+    while @aaron.money > @lowerLimit and @aaron.money < @upperLimit
       @aaron.play()
 
     @aaron.money

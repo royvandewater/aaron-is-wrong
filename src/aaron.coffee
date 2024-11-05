@@ -7,7 +7,7 @@ class Aaron
     @winnings = 1
 
   amount: =>
-    return @money *  1 if @money > 0
+    return 1 if @money > 0
     return @money * -2 if @money < 0
     return 1
 

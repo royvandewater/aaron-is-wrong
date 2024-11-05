@@ -17,5 +17,8 @@ until he wins or loses at minimum $1024 dollars.
 To run with different options, use
 
 ``` bash
-npm start -- <numGames> <limit>
+npm start -- <numGames> <lower-limit> <upper-limit>
 ```
+
+The lower limit is the amount of money Aaron is allowed to lose before he quits.
+The upper limit is the amount of money Aaron trying to win before he quits
