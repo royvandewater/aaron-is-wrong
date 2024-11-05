@@ -20,6 +20,7 @@ class Command
     console.log 'total winnings: ', f(@winnings)
     console.log 'Average winnings: ', f(@winnings / @numGames)
     console.log 'Number of quit because Aaron hit the lower limit: ', @quitBecauseLowerLimit
+    console.log 'Percentage of games won: ', 100 - (@quitBecauseLowerLimit / @numGames) * 100
 
 numGames = parseInt process.argv[2] ? 100
 lowerLimit    = parseInt process.argv[3] ? -256
